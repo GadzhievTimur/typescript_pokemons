@@ -1,5 +1,4 @@
 import { Grid } from '@mui/material'
-import React from 'react'
 import logo from './pokemons.png'
 
 export const Header = () => {
