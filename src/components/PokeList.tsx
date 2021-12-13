@@ -9,7 +9,7 @@ interface PokeListProps {
 }
 export const PokeList: FC<PokeListProps> = ({ pokes }) => {
     return (
-        <Grid container>
+        <Grid container justifyContent="center">
             {pokes?.results.length !== 0 ? pokes?.results.map(poke =>
                 <Poke key={poke.url} poke={poke} />
             ) : <div></div>}
