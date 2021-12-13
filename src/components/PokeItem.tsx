@@ -4,7 +4,7 @@ import axios from 'axios'
 import { FC, useEffect, useState } from 'react'
 import { v4 } from 'uuid'
 import { IPokeFetchCard, IPokeUrl } from './types/types'
-import * as images from "./images/index"
+import * as images from "../images/index"
 
 
 const useStyles = makeStyles(() => ({
@@ -106,41 +106,41 @@ export const Poke: FC<PokeItemProps> = ({ poke }) => {
     const logotype = (type: string) => {
         switch (type) {
             case "fire":
-                return `${images.fire}`
+                return images.fire
             case "poison":
-                return "images.poison"
+                return images.poison
             case "fighting":
-                return "images.fighting"
+                return images.fighting
             case "normal":
-                return "images.normal"
+                return images.normal
             case "water":
-                return "images.water"
+                return images.water
             case "flying":
-                return "images.flying"
+                return images.flying
             case "grass":
-                return `${images.grass}`
+                return images.grass
             case "electric":
-                return `${images.electric}`
+                return images.electric
             case "ground":
-                return "images.ground"
+                return images.ground
             case "psychic":
-                return `${images.psychic}`
+                return images.psychic
             case "rock":
-                return "images.rock"
+                return images.rock
             case "ice":
-                return "images.ice"
+                return images.ice
             case "bug":
-                return "images.bug"
+                return images.bug
             case "dragon":
-                return "images.dragon"
+                return images.dragon
             case "ghost":
-                return "images.ghost"
+                return images.ghost
             case "dark":
-                return "images.ghost"
+                return images.ghost
             case "steel":
-                return "images.steel"
+                return images.steel
             case "fairy":
-                return "images.fairy"
+                return images.fairy
 
         }
     }
@@ -152,6 +152,9 @@ export const Poke: FC<PokeItemProps> = ({ poke }) => {
                 <Typography sx={{ backgroundColor: "white", paddingTop: "5px" }}>
                     {pokemon?.name}
                 </Typography>
+                <Grid container>
+                    <img src={getTypeColor(pokemons)} alt={getTypeColor(poketype.type.name)}/>
+                </Grid>
                 <Grid item className={classes.typoImg}>
                     <Grid item className={classes.cardStyles}>
                         <img src={pokemon?.sprite} alt={pokemon?.name} className={classes.imgSizes} />
@@ -161,7 +164,7 @@ export const Poke: FC<PokeItemProps> = ({ poke }) => {
                     {pokemon?.types.map(poketype =>
                         <Typography
                             key={v4()}
-                            sx={{ ...styles.typography, backgroundColor: getTypeColor(poketype.type.name) }}>
+                            sx={{ ...styles.typography }}>
                             {poketype.type.name}
                         </Typography>
                     )}
