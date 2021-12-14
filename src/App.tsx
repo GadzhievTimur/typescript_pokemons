@@ -4,17 +4,23 @@ import { useEffect, useState } from 'react';
 import { Card, CardVariant } from './components/Card';
 import { InputField } from './components/InputField';
 import { PokeList } from './components/PokeList';
-import { IPokeFetch } from './components/types/types';
+import { IPokeUrl } from './types/types';
 import { Header } from './Header';
 
 function App() {
-  const [pokes, setPokes] = useState<IPokeFetch>();
+  const [pokes, setPokes] = useState<IPokeUrl[]>();
+  const [searchByName, setSearchByName] = useState<string>('');
+  const [searchByType, setSearchByType] = useState<string[]>([]);
+
 
 
   const fetchPokes = async () => {
-    const response = await axios.get<IPokeFetch>('https://pokeapi.co/api/v2/pokemon/?offset=0&limit=700')
-    setPokes(response.data)
+    const response = await axios.get('https://pokeapi.co/api/v2/pokemon?offset=1100&limit=18')
+    // const response = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=1118')
+
+    setPokes(response.data.results)
   }
+
   useEffect(() => {
     fetchPokes()
   }, [])
@@ -23,10 +29,10 @@ function App() {
     <Grid container sx={{ justifyContent: "center", width: "100%" }}>
       <Card width='100%' variant={CardVariant.outlined}>
         <Header />
-        <InputField />
-        <PokeList pokes={pokes && pokes} />
+        <InputField setSearchByName={setSearchByName} setSearchByType={setSearchByType} />
+        <PokeList pokes={pokes} searchByName={searchByName} searchByType={searchByType} />
       </Card>
- 
+
     </Grid >
   );
 }
